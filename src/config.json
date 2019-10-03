@@ -34,6 +34,31 @@
             "displayDecimals": 2
         },
         {
+            "symbol": "silver",
+            "name": "CMW Silver",
+            "icon": "assets/icons/mln.svg",
+            "primaryColor": "#333333",
+            "addresses": {
+                "1": "0x4D55e9d055817497De7B790D38328265f8E305D9",
+                "3": "0x0491E7Ff9afaa50B4D394C12c49BF4C8b06D1c5d",
+                "42": "0x4822b1172217875272d918e93076339193462E06"
+             },
+             "decimals": 3,
+             "displayDecimals": 2
+        },
+        {
+            "decimals": 3,
+            "symbol": "gold",
+            "name": "CMW Gold",
+            "icon": "assets/icons/mln.svg",
+            "primaryColor": "#333333",
+            "addresses": {
+                "1": "0xf61aDA5FE3ea9F919fe5Bd1FF9e809B1F4315285",
+                "3": "0x5facE2F796919cac8f446B82a7aA9CA2723BF776",
+                "42": "0xeeee3b45405c28712b76d0c64e4f0d824198af30"
+             }
+        },
+        {
             "decimals": 18,
             "symbol": "dai",
             "name": "Dai",
@@ -105,6 +130,14 @@
         }
     ],
     "pairs": [
+        {
+            "base": "silver",
+            "quote": "weth"
+        },
+        {
+            "base": "gold",
+            "quote": "weth"
+        },
         {
             "base": "zrx",
             "quote": "weth"
