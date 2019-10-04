@@ -164,6 +164,16 @@ export const startBuySellLimitSteps: ThunkCreator = (
         const tokenBalances = selectors.getTokenBalances(state) as TokenBalance[];
         const wethTokenBalance = selectors.getWethTokenBalance(state) as TokenBalance;
 
+        console.debug("DEBUG: ", baseToken, amount.toNumber(), quoteToken, price.toNumber());
+
+        if (!isWeth(baseToken.symbol) && amount.toNumber() % Math.pow(10, baseToken.decimals) !== 0) {
+            throw new Error("Only integer number of " + baseToken.name + " can be bought");
+        }
+
+        if (!isWeth(quoteToken.symbol) && price.toNumber() % Math.pow(10, quoteToken.decimals) !== 0) {
+            throw new Error("Only integer number of " + quoteToken.name + "can be sold");
+        }
+
         const buySellLimitFlow: Step[] = createBuySellLimitSteps(
             baseToken,
             quoteToken,
@@ -201,6 +211,7 @@ export const startBuySellMarketSteps: ThunkCreator = (amount: BigNumber, side: O
             },
             side,
         );
+        
         if (!canBeFilled) {
             throw new InsufficientOrdersAmountException();
         }
@@ -229,6 +240,11 @@ export const startBuySellMarketSteps: ThunkCreator = (amount: BigNumber, side: O
             if (ifEthAndWethNotEnoughBalance || ifOtherQuoteTokenAndNotEnoughBalance) {
                 throw new InsufficientTokenBalanceException(quoteToken.symbol);
             }
+        }
+
+        console.debug("DEBUG: ", baseToken, amount.toNumber());
+        if (!isWeth(baseToken.symbol) && amount.toNumber() % Math.pow(10, baseToken.decimals) !== 0) {
+            throw new Error("Only integer number of " + baseToken.name + " can be sold");
         }
 
         const buySellMarketFlow: Step[] = createBuySellMarketSteps(

@@ -190,7 +190,7 @@ export const submitMarketOrder: ThunkCreator<Promise<{ txHash: string; amountInR
                 return total.plus(currentValue);
             }, new BigNumber(0));
             const isEthBalanceEnough = ethBalance.isGreaterThan(ethAmountRequired);
-            const isMarketBuyForwarder = isBuy && isWeth(quoteToken.symbol) && isEthBalanceEnough;
+            const isMarketBuyForwarder = false && isBuy && isWeth(quoteToken.symbol) && isEthBalanceEnough;
 
             let txHash;
             if (isMarketBuyForwarder) {

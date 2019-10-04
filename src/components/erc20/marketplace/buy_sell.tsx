@@ -25,6 +25,7 @@ import { CardTabSelector } from '../../common/card_tab_selector';
 import { ErrorCard, ErrorIcons, FontSize } from '../../common/error_card';
 
 import { OrderDetailsContainer } from './order_details';
+import { isWeth } from './../../../util/known_tokens';
 
 interface StateProps {
     web3State: Web3State;
@@ -249,7 +250,7 @@ class BuySell extends React.Component<Props, State> {
                                 min={new BigNumber(0)}
                                 onChange={this.updateMakerAmount}
                                 value={makerAmount}
-                                placeholder={'0.00'}
+                                placeholder={'0'}
                             />
                             <BigInputNumberTokenLabel tokenSymbol={currencyPair.base} />
                         </FieldContainer>
@@ -264,7 +265,7 @@ class BuySell extends React.Component<Props, State> {
                                         min={new BigNumber(0)}
                                         onChange={this.updatePrice}
                                         value={price}
-                                        placeholder={'0.00'}
+                                        placeholder={'0'}
                                     />
                                     <BigInputNumberTokenLabel tokenSymbol={currencyPair.quote} />
                                 </FieldContainer>
@@ -318,40 +319,40 @@ class BuySell extends React.Component<Props, State> {
         const price = this.state.price || new BigNumber(0);
 
         const { makerFee, takerFee } = await this.props.onFetchTakerAndMakerFee(makerAmount, price, this.state.tab);
-        if (this.state.orderType === OrderType.Limit) {
-            await this.props.onSubmitLimitOrder(makerAmount, price, orderSide, makerFee);
-        } else {
-            try {
-                await this.props.onSubmitMarketOrder(makerAmount, orderSide, takerFee);
-            } catch (error) {
-                this.setState(
-                    {
-                        error: {
-                            btnMsg: 'Error',
-                            cardMsg: error.message,
-                        },
-                    },
-                    () => {
-                        // After a timeout both error message and button gets cleared
-                        setTimeout(() => {
-                            this.setState({
-                                error: {
-                                    ...this.state.error,
-                                    btnMsg: null,
-                                },
-                            });
-                        }, TIMEOUT_BTN_ERROR);
-                        setTimeout(() => {
-                            this.setState({
-                                error: {
-                                    ...this.state.error,
-                                    cardMsg: null,
-                                },
-                            });
-                        }, TIMEOUT_CARD_ERROR);
-                    },
-                );
+        try {
+            if (this.state.orderType === OrderType.Limit) {
+                await this.props.onSubmitLimitOrder(makerAmount, price, orderSide, makerFee);
+            } else {
+                    await this.props.onSubmitMarketOrder(makerAmount, orderSide, takerFee);
             }
+        } catch (error) {
+            this.setState(
+                {
+                    error: {
+                        btnMsg: 'Error',
+                        cardMsg: error.message,
+                    },
+                },
+                () => {
+                    // After a timeout both error message and button gets cleared
+                    setTimeout(() => {
+                        this.setState({
+                            error: {
+                                ...this.state.error,
+                                btnMsg: null,
+                            },
+                        });
+                    }, TIMEOUT_BTN_ERROR);
+                    setTimeout(() => {
+                        this.setState({
+                            error: {
+                                ...this.state.error,
+                                cardMsg: null,
+                            },
+                        });
+                    }, TIMEOUT_CARD_ERROR);
+                },
+            );
         }
         this._reset();
     };

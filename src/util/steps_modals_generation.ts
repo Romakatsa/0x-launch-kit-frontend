@@ -249,9 +249,9 @@ export const getWrapEthStepIfNeeded = (
     }
 
     // Weth needed only if not enough plain ETH to use forwarder
-    if (ethBalance && ethBalance.isGreaterThan(wethAmountNeeded)) {
-        return null;
-    }
+    // if (ethBalance && ethBalance.isGreaterThan(wethAmountNeeded)) {
+    //     return null;
+    // }
 
     const wethBalance = wethTokenBalance.balance;
     const deltaWeth = wethBalance.minus(wethAmountNeeded);

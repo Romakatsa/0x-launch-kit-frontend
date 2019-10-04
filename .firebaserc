@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "cmw-market-test",
+    "cmw-market-test": "cmw-market-test"
+  }
+}
