@@ -1,5 +1,6 @@
 import { BigNumber, SignedOrder } from '0x.js';
 
+import {tokenAmountInUnitsToBigNumber, unitsInTokenAmount} from "./tokens";
 import { isWeth, isZrx } from './known_tokens';
 import {
     Collectible,
@@ -51,6 +52,30 @@ export const createBuySellLimitSteps = (
     // wrap the necessary ether if it is one of the traded tokens
     if (isWeth(baseToken.symbol) || isWeth(quoteToken.symbol)) {
         const wrapEthStep = getWrapEthStepIfNeeded(amount, price, side, wethTokenBalance);
+        if (wrapEthStep) {
+            buySellLimitFlow.push(wrapEthStep);
+        }
+    }
+
+    // wrap the necessary ether if it is one of the traded tokens
+    if (isWeth(baseToken.symbol) || isWeth(quoteToken.symbol)) {
+        //console.log("wEth used");
+
+        const baseTokenDecimals = baseToken.decimals;
+        const baseTokenAmountInUnits = tokenAmountInUnitsToBigNumber(amount, baseTokenDecimals);
+
+        const quoteTokenAmountInUnits = baseTokenAmountInUnits.multipliedBy(price);
+        const quoteTokenDecimals = quoteToken.decimals;
+        const quoteTokenPriceInBaseUnits = unitsInTokenAmount(price.toString(), quoteTokenDecimals);
+
+        // console.log("NEW values:",
+        //     baseTokenAmountInUnits.toNumber(),
+        //     quoteTokenAmountInUnits.toNumber(),
+        //     quoteTokenPriceInBaseUnits.toNumber());
+
+        const wrapEthStep = getWrapEthStepIfNeeded(baseTokenAmountInUnits, quoteTokenPriceInBaseUnits, side, wethTokenBalance);
+        //.div(new BigNumber(10).pow(baseToken.decimals))
+        //console.log("Wrap Eth step:", wrapEthStep);
         if (wrapEthStep) {
             buySellLimitFlow.push(wrapEthStep);
         }
