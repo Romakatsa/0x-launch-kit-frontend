@@ -248,7 +248,8 @@ class MarketsDropdown extends React.Component<Props, State> {
                             icon={baseToken.icon}
                         />
                     ) : null}
-                    {currencyPair.base.toUpperCase()}/{currencyPair.quote.toUpperCase()}
+                    {currencyPair.base.toUpperCase()}
+                    {/* /{currencyPair.quote.toUpperCase()} */}
                 </MarketsDropdownHeaderText>
                 <ChevronDownIcon />
             </MarketsDropdownHeader>
@@ -366,7 +367,8 @@ class MarketsDropdown extends React.Component<Props, State> {
                                             icon={token.icon}
                                         />
                                         <TokenLabel>
-                                            {baseSymbol} / {quoteSymbol}
+                                            {baseSymbol} 
+                                            {/* / {quoteSymbol} */}
                                         </TokenLabel>
                                     </TokenIconAndLabel>
                                 </CustomTDFirstStyled>
