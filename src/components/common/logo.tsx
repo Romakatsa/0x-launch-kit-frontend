@@ -40,7 +40,6 @@ export const Logo: React.FC<Props> = props => {
     const { image, text, textColor, onClick, ...restProps } = props;
     return (
         <LogoLink onClick={onClick} {...restProps}>
-            {image}
             <LogoText textColor={textColor}>{text}</LogoText>
         </LogoLink>
     );
