@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import rockBackground from './../assets/rockBackground.png'
 
 import { themeBreakPoints, themeDimensions } from '../themes/commons';
 
@@ -11,6 +12,9 @@ const General = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    background-image: url(${rockBackground});
+    background-repeat: repeat;
+    background-size: contain;
 
     @media (min-width: ${themeBreakPoints.xl}) {
         height: 100%;
