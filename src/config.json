@@ -1,6 +1,6 @@
 {
     "general": {
-        "title": "CryptoMiner World Tokens Market"
+        "title": "CryptoMiner World Market"
     },
     "tokens": [
         {
@@ -37,62 +37,66 @@
             "decimals": 3,
             "symbol": "silver",
             "name": "CMW Silver",
-            "icon": "assets/icons/mln.svg",
+            "icon": "assets/icons/silver100.png",
             "primaryColor": "#333333",
             "addresses": {
-                "1": "0xf61aDA5FE3ea9F919fe5Bd1FF9e809B1F4315285",
+                "1": "0x4D55e9d055817497De7B790D38328265f8E305D9",
                 "3": "0x0491E7Ff9afaa50B4D394C12c49BF4C8b06D1c5d",
                 "42": "0x4822b1172217875272d918e93076339193462E06"
-             }
+             },
+             "displayDecimals": 0
         },
         {
             "decimals": 3,
             "symbol": "gold",
             "name": "CMW Gold",
-            "icon": "assets/icons/mln.svg",
+            "icon": "assets/icons/gold100.png",
             "primaryColor": "#333333",
             "addresses": {
                 "1": "0xf61aDA5FE3ea9F919fe5Bd1FF9e809B1F4315285",
                 "3": "0x5facE2F796919cac8f446B82a7aA9CA2723BF776",
                 "42": "0xeeee3b45405c28712b76d0c64e4f0d824198af30"
-             }
+             },
+             "displayDecimals": 0
         },
         {
             "decimals": 0,
-            "symbol": "founder's key",
+            "symbol": "founder's chest key",
             "name": "CMW Founder's Key",
-            "icon": "assets/icons/mln.svg",
+            "icon": "assets/icons/foundersKey100.png",
             "primaryColor": "#333333",
             "addresses": {
                 "1": "0xc3233a564BEFcFBc7aBEd2f881908684D45c209B",
                 "3": "0xF3f0112E59F440F7464A1785721B4C3d6737870C",
                 "42": "0x731d55CD90762c02535fF410427Dd280A1B74397"
-            }
+            },
+            "displayDecimals": 0
         },
         {
             "decimals": 0,
             "symbol": "chest key",
             "name": "CMW Chest Key",
-            "icon": "assets/icons/mln.svg",
+            "icon": "assets/icons/chestKey100.png",
             "primaryColor": "#333333",
             "addresses": {
                 "1": "0x26e8988252D8bBa4641DC3D61BBE9fBc44B421fA",
                 "3": "0xb663E0c6f03cf45a5DbE02eBF86Ea07730a3B91d",
                 "42": "0x7DA1b0552c0CAf7A72d8a7bc7F7813B3AC2FcC35"
-            }
+            },
+            "displayDecimals": 0
         },
         {
             "decimals": 0,
             "symbol": "artifact",
             "name": "CMW Artifact",
-            "icon": "assets/icons/mln.svg",
+            "icon": "assets/icons/artifacts100.png",
             "primaryColor": "#333333",
             "addresses": {
                 "1": "0x76259c1A95d25dd8F9E8808c8AaCb51397756F0C",
                 "3": "0x38B14391B82CD183CE11fdDb115aF96Bf16840D2",
                 "42": "0xBE0d479710274735Ebd361E90e56E0604a879700"
-
-            }
+            },
+            "displayDecimals": 0
         }
     ],
     "pairs": [
@@ -109,7 +113,7 @@
             "quote": "weth"
         },
         {
-            "base": "founder's key",
+            "base": "founder's chest key",
             "quote": "weth"
         },
         {

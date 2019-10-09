@@ -32,10 +32,16 @@ const Label = styled.label`
 
 const TokenIconContainer = (props: Props) => {
     const { symbol, primaryColor, theme, icon, ...restProps } = props;
+    const baseSrcUrl = "../../../";
     const fallBack = <Label>{symbol && symbol.toUpperCase()}</Label>;
-    const Icon =
-        // tslint:disable-next-line:jsx-no-lambda
-        icon ? <ReactSVG src={icon as string} fallback={() => fallBack} /> : fallBack;
+    let Icon = fallBack;
+    if (icon && icon.includes(".svg")) {
+        Icon = <ReactSVG src={icon as string} fallback={() => fallBack} />
+    }
+    else if (icon && icon.includes(".png")) {
+        Icon = <img src={`${icon}`}/>
+    }
+
     return (
         <IconContainer color={primaryColor || theme.componentsTheme.gray} {...restProps}>
             {Icon}

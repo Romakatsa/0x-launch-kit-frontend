@@ -186,9 +186,8 @@ export const createBuySellMarketSteps = (
     // base token is weth, is locked and there is not enouth plain ETH to fill the order
     const isBuyWithWethConditions =
         isBuy &&
-        unlockTokenStep &&
-        (!isWeth(tokenToUnlock.symbol) ||
-            (isWeth(tokenToUnlock.symbol) && ethBalance.isLessThan(amount.multipliedBy(price))));
+        unlockTokenStep;
+    
     if (isSell || isBuyWithWethConditions) {
         buySellMarketFlow.push(unlockTokenStep as Step);
     }
